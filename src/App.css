@@ -1,37 +1,75 @@
-.app-section{
-  margin-top: 50px;
+.app-bg{
+  background-image: url('./img/bg.png');
+  height: 1080px;
+}
+.app-container{
+
   font-family: 'Prompt', sans-serif;
+  background-color: #F1B19B;
+  width: 800px;
+  border-radius: 5px ;
+  height:100%;
+  padding: 50px;
+ 
+
+}
+.app-newcontent{
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px ;
+  width: 565px;
+  height:80px;
+  margin: 10px;
+  text-align: left;
+  padding: 10px;
+}
+.input-text{
+  margin: 10px;
 }
 .input{
   font-size: 20px;
   margin-top: 20px;
   width: 550px;
-  height: 100px;
   padding: 20px;
   font-family: 'Prompt', sans-serif;
+  border-radius: 5px;
+  border: none;
 }
 .app-header{
+  color:aliceblue;
   font-size: 40px;
-  background-color: #90B688;
   width: 600px;
   border-radius: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
 
-
 }
 .app-button{
   width: 600px;
-  padding: 15px;
 }
+
 .tweet-button{
-  background-color: #749C6C;
+  color: aliceblue;
+  background-color: #EF7C53;
   font-size: 20px;
-  float: right;
   border-radius: 5px;
   border: none;
   width: 100px;
   padding: 5px;
   font-family: 'Prompt', sans-serif;
-  
+  right: 20px;
+  float:right;
+
+}
+.tweet-button:hover{
+  color: aliceblue;
+  background-color: #fdbca5;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  width: 100px;
+  padding: 5px;
+  font-family: 'Prompt', sans-serif;
+  right: 20px;
+  float:right;
+
 }
