@@ -1,35 +1,113 @@
-import React, { useState } from "react";
-import "./App.css";
-import bgImage from "./img/bg.png";
+import React, { useState } from 'react';
+import './App.css'
+
+const startNote ={
+    content: ""
+};
 
 export default function App() {
-  //states
-  const [noteContent, setNoteContent] = useState("");
-  const [allNotes, setAllNotes] = useState([]);
+    // state
+    const [noteContent, setNoteContent] = useState(startNote);
+    const [editNote, setEditNote] = useState(null);
+    const [allNotes, setAllNotes] = useState([]);
 
 
-  //Functions
-  //function Tweet
-  function onNoteSubmit(event) {
-    event.preventDefault();
-   setAllNotes((prevAllNotes)=>{
-     return [...prevAllNotes,noteContent]
-   })
+    // function input
+    function onNoteValueChange(event) {
+        const {name, value} = event.target;
+        setNoteContent((prevNoteContent) => {
+            return {
+                ...prevNoteContent,
+                [name]: value,
+            };
+        });
+    }
 
-  }
+    function onEditNoteValueChange(event) {
+        const {name, value} = event.target;
+        setEditNote((prevNoteContent) => {
+            return {
+                ...prevNoteContent,
+                [name]: value,
+            };
+        });
+    }
 
-  //Elements
-  const noteElements = allNotes.map((note,index) => {
-    return(
-    <div key={index} className="app-newcontent">
-      {note}
-    </div>
-    )
-  });
+    function onNoteSubmit(event){
+        event.preventDefault();
+
+        setAllNotes((prevAllNotes) => {
+            const newNote = { ...noteContent };
+            newNote.id = allNotes.length+1;
+            return [newNote, ...prevAllNotes];
+        });
+
+        setNoteContent(startNote);
+    }
+
+    function onEditNoteSubmit(event){
+        event.preventDefault();
+
+        setAllNotes((prevAllNotes) => {
+            return prevAllNotes.map((theNote) =>{
+                if(theNote.id !== editNote.id) return theNote;
+                return editNote;
+            });
+        });
+
+        setEditNote(null);
+    }
 
 
-  return (
-    <div className="app-bg">
+    function onNoteDelete(noteId) {
+        setAllNotes((prevAllNotes) => {
+            return prevAllNotes.filter((theNote) => theNote.id !== noteId);
+        });
+    }
+
+    const allNotesElements = allNotes.map((theNote) => {
+        return (
+      <div key={theNote.id} className="app-newcontent">
+        {theNote.content}
+        <div  className="app-newcontent-button">
+        <button  className="btn-like" >
+          <i className="fas fa-heart"></i>Like
+          </button>
+          <button className="btn-edite">
+            <i className="fas fa-edit" onClick={() => {setEditNote(theNote)}}></i>
+          </button>
+          <button className="btn-delete" onClick={()=>{onNoteDelete(theNote.id)}}>
+            <i className="fas fa-trash"></i>
+          </button>
+
+        </div>
+      </div>
+        );
+    });
+
+    let editNoteElement = null;
+    if (!!editNote){
+      editNoteElement = (
+        <div className="app-edit-note">
+          <form onSubmit={onEditNoteSubmit}>
+            
+              <textarea
+              rows="3"
+              placeholder="what happen"
+              name="content"
+              value={editNote.content}
+              className="input-edit"
+              onChange={onEditNoteValueChange}
+    
+              />
+            </form>
+            <button typ="submit" >Update</button>
+        </div>
+      )
+    }
+
+    return (
+      <div className="app-bg">
       <center>
         <div className="app-container">
           <form onSubmit={onNoteSubmit}>
@@ -40,10 +118,9 @@ export default function App() {
                 type="text"
                 placeholder="what's happening?"
                 className="input"
-                value={noteContent}
-                onChange={(event) => {
-                  setNoteContent(event.target.value);
-                }}
+                name="content"
+                value={noteContent.content}
+                onChange={onNoteValueChange}
               ></textarea>
             </div>
             <div className="app-button">
@@ -52,9 +129,14 @@ export default function App() {
               </button>
             </div>
           </form>
-          <div className="app-notes">{noteElements}</div>
+          <div className="app-notes" >
+            {allNotesElements}
+            {editNoteElement}
+          </div>
         </div>
       </center>
     </div>
-  );
+
+    );
 }
+
