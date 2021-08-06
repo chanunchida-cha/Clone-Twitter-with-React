@@ -10,6 +10,7 @@ export default function App() {
     const [noteContent, setNoteContent] = useState(startNote);
     const [editNote, setEditNote] = useState(null);
     const [allNotes, setAllNotes] = useState([]);
+   
 
 
     // function input
@@ -65,6 +66,9 @@ export default function App() {
         });
     }
 
+
+
+
     const allNotesElements = allNotes.map((theNote) => {
         return (
       <div key={theNote.id} className="app-newcontent">
@@ -90,18 +94,19 @@ export default function App() {
       editNoteElement = (
         <div className="app-edit-note">
           <form onSubmit={onEditNoteSubmit}>
-            
+
               <textarea
               rows="3"
               placeholder="what happen"
+              className="input-edit"
               name="content"
               value={editNote.content}
-              className="input-edit"
               onChange={onEditNoteValueChange}
-    
+
               />
+                <button type="submit" >Update</button>
             </form>
-            <button typ="submit" >Update</button>
+          
         </div>
       )
     }
