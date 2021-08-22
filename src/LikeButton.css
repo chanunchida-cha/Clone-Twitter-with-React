@@ -2,6 +2,7 @@
    border: none;
     color: rgb(0, 0, 0);
     font-size: 16px;
+    font-family: 'Prompt', sans-serif;
     background-image: -webkit-linear-gradient(45deg, #EF7C53 50%, transparent 50%);
     background-image: linear-gradient(45deg, #EF7C53 50%, transparent 50%);
     background-position: 100%;
