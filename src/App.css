@@ -54,7 +54,7 @@
 
 .tweet-button{
   color: aliceblue;
-  background-color: #EF7C53;
+  background-color: #503468 ;
   font-size: 20px;
   border-radius: 5px;
   border: none;
@@ -67,7 +67,7 @@
 }
 .tweet-button:hover{
   color: aliceblue;
-  background-color: #fdbca5;
+  background-color: #845ca5 ;
   font-size: 20px;
   border-radius: 5px;
   border: none;
@@ -81,10 +81,87 @@
 .input-edit{
 
   font-size: 20px;
-  margin-top: 20px;
+  height: 180px;
   width: 550px;
-  padding: 20px;
+  padding-left: 18px;
+  padding-right: 18px;
   font-family: 'Prompt', sans-serif;
   border-radius: 5px;
   border: none;
+  margin-top: 100px;
+ 
+  z-index: 999;
+
+}
+.btn-edite{
+  font-size: 20px;
+  background-color: #fff;
+  border: none;
+  position:relative;
+  right: -500px;
+  margin-top: 25px;
+}
+.btn-edite:hover{
+  background-color: rgb(218, 218, 218);
+
+}
+.btn-delete{
+  font-size: 18px;
+  background-color: #fff;
+  border: none;
+  position:relative;
+  right: -505px;
+}
+.btn-delete:hover{
+  background-color: rgb(218, 218, 218);
+
+}
+.btn-update{
+  font-size: 18px;
+  background-color: #fff;
+  border: none;
+  position: absolute;
+  
+ 
+}
+.app-edit-note{
+  background-color: rgba(0, 0, 0, 0.699);
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+}
+.btn-update{
+  color: aliceblue;
+  background-color: #503468 ;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  width: 80px;
+  padding: 5px;
+  font-family: 'Prompt', sans-serif;
+  right: 280px;
+  float:right;
+  display: block;
+  
+ 
+}
+.btn-cancle{
+  color: aliceblue;
+  background-color: #503468 ;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  width: 80px;
+  padding: 5px;
+  font-family: 'Prompt', sans-serif;
+  right: 185px;
+  float:right;
+  
+  position: absolute;
+  display: block;
+  
+ 
 }

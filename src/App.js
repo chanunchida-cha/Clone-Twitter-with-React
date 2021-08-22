@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import './App.css'
+import React, { useState,state} from 'react';
+import './App.css';
+import LikeButton from './LikeButton';
 
 const startNote ={
     content: ""
 };
+
 
 export default function App() {
     // state
     const [noteContent, setNoteContent] = useState(startNote);
     const [editNote, setEditNote] = useState(null);
     const [allNotes, setAllNotes] = useState([]);
-   
 
 
-    // function input
+    // function input vallue change
     function onNoteValueChange(event) {
         const {name, value} = event.target;
         setNoteContent((prevNoteContent) => {
@@ -34,6 +35,7 @@ export default function App() {
         });
     }
 
+//function tweet
     function onNoteSubmit(event){
         event.preventDefault();
 
@@ -46,6 +48,7 @@ export default function App() {
         setNoteContent(startNote);
     }
 
+//function edit
     function onEditNoteSubmit(event){
         event.preventDefault();
 
@@ -59,7 +62,7 @@ export default function App() {
         setEditNote(null);
     }
 
-
+//function delete
     function onNoteDelete(noteId) {
         setAllNotes((prevAllNotes) => {
             return prevAllNotes.filter((theNote) => theNote.id !== noteId);
@@ -69,14 +72,13 @@ export default function App() {
 
 
 
+
+
     const allNotesElements = allNotes.map((theNote) => {
         return (
       <div key={theNote.id} className="app-newcontent">
         {theNote.content}
-        <div  className="app-newcontent-button">
-        <button  className="btn-like" >
-          <i className="fas fa-heart"></i>Like
-          </button>
+        <LikeButton/>
           <button className="btn-edite">
             <i className="fas fa-edit" onClick={() => {setEditNote(theNote)}}></i>
           </button>
@@ -85,7 +87,7 @@ export default function App() {
           </button>
 
         </div>
-      </div>
+    
         );
     });
 
@@ -104,12 +106,15 @@ export default function App() {
               onChange={onEditNoteValueChange}
 
               />
-                <button type="submit" >Update</button>
+                <button className='btn-update' type="submit" >Update</button>
+                
             </form>
-          
+            <button className='btn-cancle' onClick={()=>{setEditNote(null)}}>cancle</button>
+
         </div>
       )
     }
+    
 
     return (
       <div className="app-bg">
@@ -136,12 +141,13 @@ export default function App() {
           </form>
           <div className="app-notes" >
             {allNotesElements}
-            {editNoteElement}
           </div>
+          
+          {editNoteElement}
+       
         </div>
       </center>
     </div>
 
     );
 }
-
